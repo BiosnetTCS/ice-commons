@@ -13,20 +13,6 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
-        
-        <!-- Servlet & Jsp -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.4</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jsp-api</artifactId>
-            <version>2.0</version>
-            <scope>provided</scope>
-        </dependency>
 
         <!-- Spring Framework -->
         <dependency>
@@ -54,13 +40,6 @@
             <artifactId>spring-tx</artifactId>
             <version>${spring.version}</version>
         </dependency>
-        
-        <!-- Spring Data JDBC extension (for Oracle) -->
-        <!--dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-oracle</artifactId>
-            <version>1.1.0.RELEASE</version>
-        </dependency-->
         
         <!-- Utilidades Apache commons -->
         <dependency>
