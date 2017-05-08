@@ -3,6 +3,7 @@ package com.biosnettcs.core;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -17,9 +18,14 @@ import java.util.regex.Pattern;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.MapUtils;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.biosnettcs.core.exception.ValidationDataException;
 
 /**
  * Utiler&iacute;as para validar datos de la aplicacion
@@ -41,11 +47,11 @@ public class Utils
 	 * @param mensaje Mensaje agregado a la excepcion
 	 * @throws ValidationDataException
 	 */
-//	public static void validate(String cadena, String mensaje) throws ValidationDataException {
-//		if(StringUtils.isBlank(cadena)) {
-//			throw new ValidationDataException(mensaje);
-//		}
-//	}
+	public static void validate(String cadena, String mensaje) throws ValidationDataException {
+		if(StringUtils.isBlank(cadena)) {
+			throw new ValidationDataException(mensaje);
+		}
+	}
 	
 	
 	/**
@@ -55,11 +61,11 @@ public class Utils
 	 * @param mensaje Mensaje agregado a la excepcion
 	 * @throws ValidationDataException
 	 */
-//	public static void validate(Object objeto, String mensaje) throws ValidationDataException {
-//		if(objeto==null) {
-//			throw new ValidationDataException(mensaje);
-//		}
-//	}
+	public static void validate(Object objeto, String mensaje) throws ValidationDataException {
+		if(objeto==null) {
+			throw new ValidationDataException(mensaje);
+		}
+	}
 	
 	
 	/**
@@ -69,11 +75,11 @@ public class Utils
 	 * @param mensaje Mensaje agregado a la excepcion
 	 * @throws ValidationDataException
 	 */
-//	public static void validate(Collection<?> coll, String mensaje) throws ValidationDataException {
-//		if(CollectionUtils.isEmpty(coll)) {
-//			throw new ValidationDataException(mensaje);
-//		}
-//	}
+	public static void validate(Collection<?> coll, String mensaje) throws ValidationDataException {
+		if(CollectionUtils.isEmpty(coll)) {
+			throw new ValidationDataException(mensaje);
+		}
+	}
 	
 	
 	/**
@@ -83,11 +89,11 @@ public class Utils
 	 * @param mensaje Mensaje agregado a la excepcion
 	 * @throws ValidationDataException
 	 */
-//	public static void validate(Map<?,?> map, String mensaje) throws ValidationDataException {
-//		if(MapUtils.isEmpty(map)) {
-//			throw new ValidationDataException(mensaje);
-//		}
-//	}
+	public static void validate(Map<?,?> map, String mensaje) throws ValidationDataException {
+		if(MapUtils.isEmpty(map)) {
+			throw new ValidationDataException(mensaje);
+		}
+	}
 	
 	
 	/**
@@ -97,11 +103,11 @@ public class Utils
 	 * @param mensaje Mensaje agregado a la excepcion
 	 * @throws ValidationDataException
 	 */
-//	public static void validate(Boolean condicion, String mensaje) throws ValidationDataException {
-//		if(BooleanUtils.isNotTrue(condicion)) {
-//			throw new ValidationDataException(mensaje);
-//		}
-//	}
+	public static void validate(Boolean condicion, String mensaje) throws ValidationDataException {
+		if(BooleanUtils.isNotTrue(condicion)) {
+			throw new ValidationDataException(mensaje);
+		}
+	}
 	
 	
 	/**
@@ -188,6 +194,7 @@ public class Utils
 	{
 		return Long.toString(System.currentTimeMillis());
 	}
+	
 	/*
 	public static UserVO validateSession(Map<String,Object>session)throws Exception
 	{
@@ -195,17 +202,16 @@ public class Utils
 		Utils.validate(session.get("USUARIO") , "No hay usuario en la sesion");
 		return (UserVO)session.get("USUARIO");
 	}
+	*/
 	
-	public static void validate(String... args) throws ValidationDataException
-	{
+	public static void validate(String... args) throws ValidationDataException {
 		for(int i=0;i<args.length;i=i+2)
 		{
 			Utils.validate(args[i],args[i+1]);
 		}
 	}
 	
-	public static ApplicationException generaExcepcion(Exception e,String paso,String traza) throws Exception
-	{		
+	public static ApplicationException generaExcepcion(Exception e,String paso,String traza) throws Exception {
 		if(e instanceof ApplicationException)
 		{
 			((ApplicationException)e).setTraza(traza);
@@ -223,8 +229,7 @@ public class Utils
 		}
 	}
 	
-	public static void validate(StringBuilder sb, String... args) throws ValidationDataException
-	{
+	public static void validate(StringBuilder sb, String... args) throws ValidationDataException {
 		for(int i=0;i<args.length;i=i+2)
 		{
 			Utils.validate(sb, args[i] , args[i+1]);
@@ -236,12 +241,13 @@ public class Utils
 			throw new ValidationDataException(mensaje,sb.toString());
 		}
 	}
-	*/
+	
 	/**
 	 * Formatea un string con el contenido de una fecha
 	 * @param fecha Fecha formateada
 	 * @return
 	 */
+	@Deprecated
 	public static String formateaFecha(String fecha) {
 		StringBuilder strBuilder = new StringBuilder();
 		try {
@@ -266,6 +272,7 @@ public class Utils
 	 * @param fecha Fecha formateada
 	 * @return
 	 */
+	@Deprecated
 	public static String formateaFechaConHora(String fecha) {
 		StringBuilder strBuilder = new StringBuilder();
 		try {
@@ -292,6 +299,7 @@ public class Utils
 	 * @param fecha String
 	 * @return devuelve objeto Calendar
 	 */
+	@Deprecated
 	public static Calendar getCalendarTimeZone0(String fecha, String dateFormat) {
 		
 		Calendar  cal = null;
@@ -321,6 +329,7 @@ public class Utils
 	 * @param fecha String
 	 * @return devuelve objeto Calendar
 	 */
+	@Deprecated
 	public static Calendar getCalendarServerTimeZone(String fecha, String dateFormat) {
 		
 		Calendar  cal = null;
@@ -348,6 +357,7 @@ public class Utils
 	 * @param fecha String dd/MM/YYYY
 	 * @return devuelve objeto XMLGregorianCalendar
 	 */
+	@Deprecated
 	public static XMLGregorianCalendar getXmlGregCalendar(String fecha, String dateFormat) {
 		
 		XMLGregorianCalendar xmlCal = null;
@@ -383,7 +393,8 @@ public class Utils
  
 		try {
 			//if not valid, it will throw ParseException
-			Date date = sdf.parse(dateToValidate);
+			//Date date = 
+			sdf.parse(dateToValidate);
 		} catch (Exception e) {
 			return false;
 		}
@@ -451,6 +462,7 @@ public class Utils
 	 * @return
 	 * @throws Exception
 	 */
+	@Deprecated
 	public static Map<String,Object> ponFechas(Map<String,String>params) throws Exception
 	{
 		Map<String,Object> omap=new HashMap<String,Object>(0);
