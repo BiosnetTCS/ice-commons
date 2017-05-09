@@ -14,6 +14,19 @@
     <!--context:component-scan base-package="com.biosnettcs" /-->
     
     
+    <!-- ******************** Beans de Nuevo patron de Spring JDBC: ******************** -->
+    <bean id="abstractManagerDAO" abstract="true" class="com.biosnettcs.core.AbstractManagerDAO" parent="abstractJdbcDAO">
+        <property name="procesoResultadoDAO" ref="procesoResultadoDAO"/>
+    </bean>
+        
+    <bean id="procesoResultadoDAO" class="com.biosnettcs.core.ProcesoResultadoDAOImpl" parent="abstractManagerDAO"/>
+    
+    <bean id="abstractJdbcDAO" abstract="true" class="org.springframework.jdbc.core.support.JdbcDaoSupport">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- ******************** Fin de Beans de Nuevo patron de Spring JDBC ******************** -->
+    
+    
     <!-- ******************** Manejo de transacciones para Spring JDBC ******************** -->
     <!-- Enable Annotation based Declarative Transaction Management -->
     <tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager"/>
@@ -23,18 +36,5 @@
         <property name="dataSource" ref="dataSource" />
     </bean>
     <!-- ******************** Fin de Manejo de transacciones para Spring JDBC ******************** -->
-    
-    
-    <!-- ******************** Beans de Nuevo patron de Spring JDBC: ******************** -->
-    <bean id="abstractJdbcDAO" abstract="true" class="org.springframework.jdbc.core.support.JdbcDaoSupport">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
-    
-    <bean id="procesoResultadoDAO" class="com.biosnettcs.core.ProcesoResultadoDAOImpl" parent="abstractManagerDAO"/>
-    
-    <bean id="abstractManagerDAO" abstract="true" class="com.biosnettcs.core.AbstractManagerDAO" parent="abstractJdbcDAO">
-        <property name="procesoResultadoDAO" ref="procesoResultadoDAO"/>
-    </bean>
-    <!-- ******************** Fin de Beans de Nuevo patron de Spring JDBC ******************** -->
 	
 </beans>
