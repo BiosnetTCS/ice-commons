@@ -3,13 +3,14 @@ package com.biosnettcs.core;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.jdbc.object.StoredProcedure;
 
 public abstract class AbstractManagerDAO extends JdbcDaoSupport {
 
-	private static Logger logger = Logger.getLogger(AbstractManagerDAO.class);
+	private static Logger logger = LoggerFactory.getLogger(AbstractManagerDAO.class);
 	
 	private ProcesoResultadoDAO procesoResultadoDAO;
 	
@@ -22,12 +23,12 @@ public abstract class AbstractManagerDAO extends JdbcDaoSupport {
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
 	public Map<String, Object> ejecutaSP(StoredProcedure storedProcedure, Map parameters) throws Exception {
-    	
-    	logger.info("##### CALLING SP: " + storedProcedure.getSql() + " " + parameters);
+    	 
+    	logger.info("##### CALLING {}: {} {}", storedProcedure.isFunction() ? "SF" : "SP", storedProcedure.getSql(), parameters);
     	long inicio = System.currentTimeMillis();
 		Map<String, Object> mapResult = storedProcedure.execute(parameters);
 		long tfinal = System.currentTimeMillis();
-		logger.info("##### FINISH  SP: " + storedProcedure.getSql() + " IN " + (tfinal - inicio) / 1000d + " SECS ");
+		logger.info("##### FINISH  {}: {} IN {} SECS ", storedProcedure.isFunction() ? "SF" : "SP", storedProcedure.getSql(), (tfinal - inicio) / 1000d);
 		
         BaseVO mensajeRespuesta = traduceMensaje(mapResult);
         mapResult.put("msg_id", mensajeRespuesta.getKey());
