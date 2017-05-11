@@ -1,4 +1,4 @@
-package com.biosnettcs.core.exception;
+package com.biosnettcs.core.dao.exception;
 
 public class DaoException extends Exception {
 	

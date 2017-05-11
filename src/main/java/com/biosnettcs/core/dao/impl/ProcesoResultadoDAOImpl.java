@@ -1,4 +1,4 @@
-package com.biosnettcs.core;
+package com.biosnettcs.core.dao.impl;
 
 import java.sql.Types;
 import java.util.HashMap;
@@ -10,6 +10,10 @@ import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.SqlOutParameter;
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.object.StoredProcedure;
+
+import com.biosnettcs.core.DaoException;
+import com.biosnettcs.core.dao.AbstractManagerDAO;
+import com.biosnettcs.core.dao.ProcesoResultadoDAO;
 
 public class ProcesoResultadoDAOImpl extends AbstractManagerDAO implements ProcesoResultadoDAO {
 

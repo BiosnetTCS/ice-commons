@@ -1,5 +1,6 @@
-package com.biosnettcs.core;
+package com.biosnettcs.core.dao;
 
+import com.biosnettcs.core.DaoException;
 
 /**
  * 

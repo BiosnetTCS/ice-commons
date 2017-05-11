@@ -22,19 +22,4 @@ public interface Constantes {
     
     public static final String STATUS_VIVO   = "V";
     public static final String STATUS_MUERTO = "M";
-    
-    public static final String MAUTSINI_AREA_RECLAMACIONES = "RE";
-    public static final String MAUTSINI_AREA_MEDICA        = "ME";
-    public static final String MAUTSINI_SINIESTRO          = "S";
-    public static final String MAUTSINI_FACTURA            = "F";
-    public static final String MAUTSINI_DETALLE            = "D";
-	
-    /**
-     * Mensaje Atributo Variable cuando tiene hijos asociados
-     */
-    public static final String MESSAGE_ATRIBUTO_CON_HIJOS_ASOCIADOS = "El atributo tiene hijos asociados, si se elimina tambi�n se eliminar�n esas asociaciones. �Desea continuar?";
-    
-    public static final String REGISTRO_DUPLICADO = "100006";
-    
-    public static final String NMSITUAC_TITULAR = "1";
 }

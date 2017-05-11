@@ -9,17 +9,14 @@
            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
            http://www.springframework.org/schema/jee     http://www.springframework.org/schema/jee/spring-jee.xsd
            http://www.springframework.org/schema/tx      http://www.springframework.org/schema/tx/spring-tx.xsd">
-    
-    
-    <!--context:component-scan base-package="com.biosnettcs" /-->
-    
+	
     
     <!-- ******************** Beans de Nuevo patron de Spring JDBC: ******************** -->
-    <bean id="abstractManagerDAO" abstract="true" class="com.biosnettcs.core.AbstractManagerDAO" parent="abstractJdbcDAO">
+    <bean id="abstractManagerDAO" abstract="true" class="com.biosnettcs.core.dao.AbstractManagerDAO" parent="abstractJdbcDAO">
         <property name="procesoResultadoDAO" ref="procesoResultadoDAO"/>
     </bean>
         
-    <bean id="procesoResultadoDAO" class="com.biosnettcs.core.ProcesoResultadoDAOImpl" parent="abstractManagerDAO"/>
+    <bean id="procesoResultadoDAO" class="com.biosnettcs.core.dao.impl.ProcesoResultadoDAOImpl" parent="abstractManagerDAO"/>
     
     <bean id="abstractJdbcDAO" abstract="true" class="org.springframework.jdbc.core.support.JdbcDaoSupport">
         <property name="dataSource" ref="dataSource"/>
