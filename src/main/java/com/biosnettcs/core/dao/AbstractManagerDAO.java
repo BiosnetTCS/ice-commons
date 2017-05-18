@@ -8,10 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.jdbc.object.StoredProcedure;
 
-import com.biosnettcs.core.ApplicationException;
 import com.biosnettcs.core.BaseVO;
 import com.biosnettcs.core.Constantes;
 import com.biosnettcs.core.DaoException;
+import com.biosnettcs.core.exception.ApplicationException;
 
 public abstract class AbstractManagerDAO extends JdbcDaoSupport {
 

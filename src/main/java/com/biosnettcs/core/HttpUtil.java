@@ -13,6 +13,8 @@ import java.net.URL;
 
 import org.apache.log4j.Logger;
 
+import com.biosnettcs.core.exception.ApplicationException;
+
 public class HttpUtil {
 
 	private static Logger logger = Logger.getLogger(HttpUtil.class);
